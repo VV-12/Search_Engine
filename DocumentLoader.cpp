@@ -5,8 +5,9 @@
 
 // we will use this to read files in a directory
 
-std::vector <Document> loadDocuments(std::string dirPath) {
+std::vector <Document> loadDocuments(const std::string dirPath) {
     std::vector <Document> loadedDocs;
+    uint64_t idCount = 0;
 
     if (!std::filesystem::is_directory(dirPath)) {
         std::cerr<<"Mentioned path is not a valid directory\n";
@@ -18,6 +19,11 @@ std::vector <Document> loadDocuments(std::string dirPath) {
             Document newDoc;
 
             std::ifstream textFile{entry.path()};
+
+            if (!textFile) {
+                continue;
+            }
+
             std::string content = "";
             
             newDoc.fileName = entry.path().filename().string();
@@ -30,8 +36,6 @@ std::vector <Document> loadDocuments(std::string dirPath) {
             loadedDocs.push_back(newDoc);
         }
     }
-
-    std::cout<<"Number of documents loaded : "<<loadedDocs.size();
 
     return loadedDocs;
 }

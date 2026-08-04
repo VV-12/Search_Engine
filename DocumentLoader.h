@@ -4,8 +4,6 @@
 #include <string>
 #include <vector>
 
-inline uint64_t idCount = 1;
-
 struct Document {
     int id;
     std::string fileName;
