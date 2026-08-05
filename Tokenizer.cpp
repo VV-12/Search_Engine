@@ -1,15 +1,17 @@
 #include "Tokenizer.h"
 
 void Tokenizer::tokenizeDocument(Document& doc) {
+    doc.tokens.clear();
+
     std::string currWord = "";
 
-    for (const char c : doc.content) {
+    for (char c : doc.content) {
         if (std::isalpha(c)) {
             currWord += std::tolower(c);
         }
         else {
             if (!currWord.empty()) doc.tokens.push_back(currWord);
-            currWord = "";
+            currWord.clear();
         }
     }
 
@@ -17,5 +19,5 @@ void Tokenizer::tokenizeDocument(Document& doc) {
 }
 
 void Tokenizer::tokenize(Document& loadedDoc) {
-    Tokenizer::tokenizeDocument(loadedDoc);
+    tokenizeDocument(loadedDoc);
 }
