@@ -12,6 +12,8 @@ void Tokenizer::tokenizeDocument(Document& doc) {
             currWord = "";
         }
     }
+
+    if (!currWord.empty()) doc.tokens.push_back(currWord);
 }
 
 void Tokenizer::tokenize(Document& loadedDoc) {
