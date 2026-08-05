@@ -1,23 +1,19 @@
 #include "Tokenizer.h"
 
-void tokenizer(std::vector <Document>& loadedDocs) {
+void Tokenizer::tokenizeDocument(Document& doc) {
+    std::string currWord = "";
 
-    for (Document& doc : loadedDocs) {
-        std::string currWord = "";
-
-        for (char c : doc.content) {
-            if (std::isalpha(c)) {
-                currWord += std::tolower(c);
-            }
-            else {
-                if (!currWord.empty()) doc.tokens.push_back(currWord);
-                currWord = "";
-            }
+    for (const char c : doc.content) {
+        if (std::isalpha(c)) {
+            currWord += std::tolower(c);
         }
-
-        if (!currWord.empty()) {
-            doc.tokens.push_back(currWord);
+        else {
+            if (!currWord.empty()) doc.tokens.push_back(currWord);
             currWord = "";
         }
     }
+}
+
+void Tokenizer::tokenize(Document& loadedDoc) {
+    Tokenizer::tokenizeDocument(loadedDoc);
 }

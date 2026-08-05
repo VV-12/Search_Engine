@@ -4,6 +4,12 @@
 #include <string>
 #include <vector>
 
-void tokenizer(std::vector <Document>& loadedDocs);
+class Tokenizer {
+    public:
+    void tokenize(Document& loadedDoc);
+
+    private:
+    void tokenizeDocument(Document& doc);
+};
 
 #endif
