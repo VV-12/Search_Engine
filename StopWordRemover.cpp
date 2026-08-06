@@ -25,7 +25,7 @@ void StopWordRemover::removeStopWord(Document& doc) {
     
     std::vector <std::string> tokenWithoutStopWords;
 
-    for (const std::string token : doc.tokens) {
+    for (const std::string& token : doc.tokens) {
         if (StopWordRemover::stopWordSet.find(token) == StopWordRemover::stopWordSet.end()) {
             tokenWithoutStopWords.push_back(token);
         }
