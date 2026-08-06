@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-StopWordRemover::StopWordRemover(std::string& stopWordFilePath) {
+StopWordRemover::StopWordRemover(const std::string& stopWordFilePath) {
     std::ifstream stopWordFile{stopWordFilePath};
 
     if (!stopWordFile) {

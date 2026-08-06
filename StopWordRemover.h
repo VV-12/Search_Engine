@@ -8,7 +8,7 @@
 
 class StopWordRemover {
     public:
-    StopWordRemover(std::string& stopWordFilePath);
+    StopWordRemover(const std::string& stopWordFilePath);
 
     void removeStopWords(Document& doc);
 
