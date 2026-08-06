@@ -2,7 +2,6 @@
 #define STOPWORDREMOVER_H
 
 #include <string>
-#include <vector>
 #include "DocumentStructure.h"
 #include <unordered_set>
 
@@ -15,7 +14,7 @@ class StopWordRemover {
     private:
     std::unordered_set <std::string> stopWordSet;
 
-    void removeStopWord(Document& doc);
+    void removeStopWordsImpl(Document& doc);
 };
 
 #endif

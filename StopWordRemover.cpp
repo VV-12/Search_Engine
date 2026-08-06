@@ -6,7 +6,7 @@ StopWordRemover::StopWordRemover(const std::string& stopWordFilePath) {
     std::ifstream stopWordFile{stopWordFilePath};
 
     if (!stopWordFile) {
-        std::cerr<<"Empty stop word list given";
+        throw std::runtime_error("Failed to open stop-word file : "+stopWordFilePath);
         return;
     }
 
@@ -21,19 +21,21 @@ StopWordRemover::StopWordRemover(const std::string& stopWordFilePath) {
     std::cout<<"Successfully loaded "<<loadedStopWords<<" stop words\n";
 }
 
-void StopWordRemover::removeStopWord(Document& doc) {
+void StopWordRemover::removeStopWordsImpl(Document& doc) {
     
     std::vector <std::string> tokenWithoutStopWords;
 
+    tokenWithoutStopWords.reserve(doc.tokens.size());
+
     for (const std::string& token : doc.tokens) {
-        if (StopWordRemover::stopWordSet.find(token) == StopWordRemover::stopWordSet.end()) {
+        if (stopWordSet.find(token) == stopWordSet.end()) {
             tokenWithoutStopWords.push_back(token);
         }
     }
 
-    doc.tokens = tokenWithoutStopWords;
+    doc.tokens = std::move(tokenWithoutStopWords);
 }
 
 void StopWordRemover::removeStopWords(Document& doc) {
-    removeStopWord(doc);
+    removeStopWordsImpl(doc);
 }
