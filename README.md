@@ -27,6 +27,12 @@ g++ -std=c++17 main.cpp DocumentLoader.cpp Tokenizer.cpp StopWordRemover.cpp Por
 
 ## Run
 
+### To build the executable
+
+```bash
+g++ -std=c++17 main.cpp DocumentLoader.cpp Tokenizer.cpp StopWordRemover.cpp PorterStemmer.cpp InvertedIndex.cpp -o search_engine.exe
+```
+
 Run the executable from the repository root so that the relative paths `documents/` and `assets/stopWords.txt` resolve correctly:
 
 ```bash
